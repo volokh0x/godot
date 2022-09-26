@@ -1867,8 +1867,13 @@ void CodeTextEditor::update_toggle_scripts_button() {
 
 CodeTextEditor::CodeTextEditor() {
 	code_complete_func = nullptr;
-	ED_SHORTCUT("script_editor/zoom_in", TTR("Zoom In"), KeyModifierMask::CMD_OR_CTRL | Key::EQUAL);
-	ED_SHORTCUT("script_editor/zoom_out", TTR("Zoom Out"), KeyModifierMask::CMD_OR_CTRL | Key::MINUS);
+
+	ED_SHORTCUT_ARRAY("script_editor/zoom_in", TTR("Zoom In"),
+			{ int32_t(KeyModifierMask::CMD_OR_CTRL | Key::EQUAL), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_ADD) });
+
+	ED_SHORTCUT_ARRAY("script_editor/zoom_out", TTR("Zoom Out"),
+			{ int32_t(KeyModifierMask::CMD_OR_CTRL | Key::MINUS), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_SUBTRACT) });
+
 	ED_SHORTCUT_ARRAY("script_editor/reset_zoom", TTR("Reset Zoom"),
 			{ int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KEY_0), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_0) });
 

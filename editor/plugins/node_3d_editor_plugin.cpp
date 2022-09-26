@@ -7886,11 +7886,11 @@ Node3DEditor::Node3DEditor() {
 	preview_node = memnew(Node3D);
 	preview_bounds = AABB();
 
-	ED_SHORTCUT("spatial_editor/bottom_view", TTR("Bottom View"), KeyModifierMask::ALT + Key::KP_7);
+	ED_SHORTCUT("spatial_editor/bottom_view", TTR("Bottom View"), KeyModifierMask::ALT | Key::KP_7);
 	ED_SHORTCUT("spatial_editor/top_view", TTR("Top View"), Key::KP_7);
-	ED_SHORTCUT("spatial_editor/rear_view", TTR("Rear View"), KeyModifierMask::ALT + Key::KP_1);
+	ED_SHORTCUT("spatial_editor/rear_view", TTR("Rear View"), KeyModifierMask::ALT | Key::KP_1);
 	ED_SHORTCUT("spatial_editor/front_view", TTR("Front View"), Key::KP_1);
-	ED_SHORTCUT("spatial_editor/left_view", TTR("Left View"), KeyModifierMask::ALT + Key::KP_3);
+	ED_SHORTCUT("spatial_editor/left_view", TTR("Left View"), KeyModifierMask::ALT | Key::KP_3);
 	ED_SHORTCUT("spatial_editor/right_view", TTR("Right View"), Key::KP_3);
 	ED_SHORTCUT("spatial_editor/orbit_view_down", TTR("Orbit View Down"), Key::KP_2);
 	ED_SHORTCUT("spatial_editor/orbit_view_left", TTR("Orbit View Left"), Key::KP_4);
@@ -7901,12 +7901,18 @@ Node3DEditor::Node3DEditor() {
 	ED_SHORTCUT("spatial_editor/insert_anim_key", TTR("Insert Animation Key"), Key::K);
 	ED_SHORTCUT("spatial_editor/focus_origin", TTR("Focus Origin"), Key::O);
 	ED_SHORTCUT("spatial_editor/focus_selection", TTR("Focus Selection"), Key::F);
-	ED_SHORTCUT("spatial_editor/align_transform_with_view", TTR("Align Transform with View"), KeyModifierMask::ALT + KeyModifierMask::CMD_OR_CTRL + Key::M);
-	ED_SHORTCUT("spatial_editor/align_rotation_with_view", TTR("Align Rotation with View"), KeyModifierMask::ALT + KeyModifierMask::CMD_OR_CTRL + Key::F);
-	ED_SHORTCUT("spatial_editor/freelook_toggle", TTR("Toggle Freelook"), KeyModifierMask::SHIFT + Key::F);
-	ED_SHORTCUT("spatial_editor/decrease_fov", TTR("Decrease Field of View"), KeyModifierMask::CMD_OR_CTRL + Key::EQUAL); // Usually direct access key for `KEY_PLUS`.
-	ED_SHORTCUT("spatial_editor/increase_fov", TTR("Increase Field of View"), KeyModifierMask::CMD_OR_CTRL + Key::MINUS);
-	ED_SHORTCUT("spatial_editor/reset_fov", TTR("Reset Field of View to Default"), KeyModifierMask::CMD_OR_CTRL + Key::KEY_0);
+	ED_SHORTCUT("spatial_editor/align_transform_with_view", TTR("Align Transform with View"), KeyModifierMask::ALT | KeyModifierMask::CMD_OR_CTRL | Key::M);
+	ED_SHORTCUT("spatial_editor/align_rotation_with_view", TTR("Align Rotation with View"), KeyModifierMask::ALT | KeyModifierMask::CMD_OR_CTRL | Key::F);
+	ED_SHORTCUT("spatial_editor/freelook_toggle", TTR("Toggle Freelook"), KeyModifierMask::SHIFT | Key::F);
+
+	ED_SHORTCUT_ARRAY("spatial_editor/decrease_fov", TTR("Decrease Field of View"),
+			{ int32_t(KeyModifierMask::CMD_OR_CTRL | Key::EQUAL), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_ADD) }); // Usually direct access key for `KEY_PLUS`.
+
+	ED_SHORTCUT_ARRAY("spatial_editor/increase_fov", TTR("Increase Field of View"),
+			{ int32_t(KeyModifierMask::CMD_OR_CTRL | Key::MINUS), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_SUBTRACT) });
+
+	ED_SHORTCUT_ARRAY("spatial_editor/reset_fov", TTR("Reset Field of View to Default"),
+			{ int32_t(KeyModifierMask::CMD_OR_CTRL + Key::KEY_0), int32_t(KeyModifierMask::CMD_OR_CTRL | Key::KP_0) });
 
 	PopupMenu *p;
 

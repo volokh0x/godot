@@ -392,6 +392,7 @@ Ref<ButtonGroup> BaseButton::get_button_group() const {
 	return button_group;
 }
 
+// VV:
 void BaseButton::set_shortcut_context(Node *p_node) {
 	if (p_node != nullptr) {
 		shortcut_context = p_node->get_instance_id();
@@ -408,6 +409,8 @@ Node *BaseButton::get_shortcut_context() const {
 }
 
 bool BaseButton::_is_focus_owner_in_shortcut_context() const {
+	// VV:
+	// return true;
 	if (shortcut_context == ObjectID()) {
 		// No context, therefore global - always "in" context.
 		return true;

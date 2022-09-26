@@ -1227,6 +1227,7 @@ bool CanvasItemEditor::_gui_input_zoom_or_pan(const Ref<InputEvent> &p_event, bo
 	Ref<InputEventKey> k = p_event;
 	if (k.is_valid()) {
 		if (k->is_pressed()) {
+			// VV:
 			if (ED_GET_SHORTCUT("canvas_item_editor/zoom_3.125_percent")->matches_event(p_event)) {
 				_shortcut_zoom_set(1.0 / 32.0);
 			} else if (ED_GET_SHORTCUT("canvas_item_editor/zoom_6.25_percent")->matches_event(p_event)) {
@@ -5023,6 +5024,7 @@ CanvasItemEditor::CanvasItemEditor() {
 	controls_vb = memnew(VBoxContainer);
 	controls_vb->set_begin(Point2(5, 5));
 
+	// VV:
 	// To ensure that scripts can parse the list of shortcuts correctly, we have to define
 	// those shortcuts one by one. Define shortcut before using it (by EditorZoomWidget).
 	ED_SHORTCUT_ARRAY("canvas_item_editor/zoom_3.125_percent", TTR("Zoom to 3.125%"),
@@ -5057,6 +5059,7 @@ CanvasItemEditor::CanvasItemEditor() {
 
 	zoom_widget = memnew(EditorZoomWidget);
 	controls_vb->add_child(zoom_widget);
+	zoom_widget->set_shortcut_context(this);
 	zoom_widget->set_anchors_and_offsets_preset(Control::PRESET_TOP_LEFT, Control::PRESET_MODE_MINSIZE, 2 * EDSCALE);
 	zoom_widget->connect("zoom_changed", callable_mp(this, &CanvasItemEditor::_update_zoom));
 

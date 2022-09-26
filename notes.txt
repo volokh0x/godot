@@ -1,0 +1,9 @@
+
+shortcut->matches_event(p_event) && ED_GET_SHORTCUT("canvas_item_editor/zoom_100_percent")->matches_event(p_event)
+shortcut->matches_event(p_event) && ED_GET_SHORTCUT("spatial_editor/toggle_camera_preview")->matches_event(p_event)
+
+==================================
+
+Using shortcuts for zooming doesn't work in the 2D editor because `EditorZoomWidget`, the corresponding shortcut context node of `zoom_minus`, `zoom_reset`, and `zoom_plus` buttons, doesn't get focused in the editor. As the result, the widget doesn't react to shortcuts anywhere it's used.
+
+Perhaps, setting the shortcut context of `EditorZoomWidget` buttons to some other node could solve this problem
